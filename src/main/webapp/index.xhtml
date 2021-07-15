@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<title>Meetapp</title>
+</h:head>
+<h:body>
+
+	<div id="header" class="center">
+		<h1>Meeapp</h1>
+	</div>
+
+	<div class="meet center">
+		<h:form id="form">
+			<h:panelGrid>
+				<p:outputLabel value="Nome do Evento:" />
+				<p:inputText value="#{meetBean.meet.name}" />
+
+				<p:outputLabel value="Nome da Organização:" />
+				<p:inputText value="#{meetBean.meet.institution}" />
+
+				<p:outputLabel value="Local:" />
+				<p:inputText value="#{meetBean.meet.place}" />
+
+				<p:outputLabel value="Data:" />
+				<p:inputText value="#{meetBean.meet.date}" type="date"/>
+
+				<p:outputLabel value="Horário:" />
+				<p:inputText value="#{meetBean.meet.time}" type="time"/>
+				<h:panelGroup styleClass="center">
+					<p:commandButton value="Cadastrar"
+						action="#{meetBean.addMeet}" update="form table" />
+				</h:panelGroup>
+			</h:panelGrid>
+		</h:form>
+	</div>
+
+	<h:panelGroup styleClass="center">
+		<p:dataTable value="#{meetBean.meetList}" var="meet" border="1"
+			id="table">
+			<p:column headerText="Nome">#{meet.name}</p:column>
+			<p:column headerText="Organização">#{meet.institution}</p:column>
+			<p:column headerText="Local">#{meet.place}</p:column>
+			<p:column headerText="Data">#{meet.date}</p:column>
+			<p:column headerText="Horário">#{meet.time}</p:column>
+		</p:dataTable>
+	</h:panelGroup>
+
+</h:body>
+</html>
